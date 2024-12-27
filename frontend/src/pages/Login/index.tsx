@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Title } from './components/Title.tsx'
 import { Input } from './components/Input.tsx'
 import { RememberMe } from './components/RememberMe.tsx'
@@ -40,7 +40,6 @@ export function Login(){
                         Login
                     </button>
                 </form>
-                
             </div>           
         </div>
     )

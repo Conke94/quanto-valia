@@ -1,3 +1,6 @@
+# I tried to user docker, but everytime I updated something it was necessary to
+# build it again, so I gave up. I tried use volume a little bit, but without success
+
 services:
   backend:
     build:
