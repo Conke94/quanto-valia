@@ -9,7 +9,7 @@ export function MainPage(){
         {
             queryKey: [QUERY_KEYS.GET_PRESIDENTS], 
             queryFn: async () => {
-                const response = await fetch(`${BASE_URL}/president`);
+                const response = await fetch(`${BASE_URL}/standard/president`);
                 return await (response.json()) as President[];
             }
         }

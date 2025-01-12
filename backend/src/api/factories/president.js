@@ -1,8 +1,10 @@
 import { PresidentController } from "../controllers/president.js"
+import { PresidentService } from "../services/president.js"
 
 export class PresidentFactory{
     static createInstance(){
-        const controller = new PresidentController();
+        const service = new PresidentService();
+        const controller = new PresidentController(service);
         return { controller };
     }
 }
