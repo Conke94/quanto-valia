@@ -1,11 +1,16 @@
+import logger from '../utils/logger.js'
+
 export class PresidentService{
     async index(){
+        logger.info("[PresidentService] index init");
         const data = [
             {
                 name: 'Luis Inácio Lula',
                 startYear: 2007,
                 endYear: 2010,
-                urlLogo: ''
+                urlLogo: '',
+                inflation_percentage: 1,
+                salary_increase_percentage: 0
             },
             {
                 name: 'Dilma Roussef',
@@ -38,6 +43,7 @@ export class PresidentService{
                 urlLogo: ''
             }
         ];
+        logger.info("[PresidentService] index finish");
         return data;
     }
 }
