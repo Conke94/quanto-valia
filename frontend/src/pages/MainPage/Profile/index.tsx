@@ -1,4 +1,5 @@
 import React from "react";
+import { format } from 'date-fns';
 
 import type { President } from "../../../utils";
 import { Avatar } from "./Avatar/index.tsx"
@@ -13,7 +14,7 @@ export function Profile({president}: ProfileProps){
             <Avatar />
             <div>{president.name}</div>
             <div>
-                {president.startYear} - {president.endYear}
+                {format(new Date(president.startDate), 'yyyy')} -  {format(new Date(president.endDate), 'yyyy')}
             </div>
         </div>
     )

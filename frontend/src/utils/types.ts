@@ -1,6 +1,6 @@
 export type President = {
     name: string,
-    startYear: number,
-    endYear: number,
+    startDate: string,
+    endDate: string,
     urlLogo: string
 }
