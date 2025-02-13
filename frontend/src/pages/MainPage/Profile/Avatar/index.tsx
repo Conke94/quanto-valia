@@ -2,6 +2,6 @@ import React from "react";
 
 export function Avatar(){
     return (
-        <div style={{backgroundColor: 'black', width:'200px', height: '200px', borderRadius: '50%'}} />
+        <div style={{backgroundColor: 'black', width:'200px', height: '200px', borderRadius: '50%', marginBottom: '15px'}} />
     )
 }
