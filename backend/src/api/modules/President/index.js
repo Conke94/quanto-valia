@@ -1,0 +1,6 @@
+export * from './president.repository'
+export * from './president.controller'
+export * from './president.factory'
+export * from './president.service'
+export * from './president.schema'
+export * from './president.route'

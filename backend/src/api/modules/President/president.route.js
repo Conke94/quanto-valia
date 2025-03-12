@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { PresidentFactory } from '../factories/president.js';
+import { PresidentFactory } from '../President';
 
 const router = Router();
 

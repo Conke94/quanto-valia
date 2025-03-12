@@ -1,5 +1,5 @@
-import President from '../models/President.js'
-import logger from '../utils/logger.js'
+import President from '../../models/President.js'
+import logger from '../../utils/logger.js'
 
 export class PresidentRepository{
     async findAll(){

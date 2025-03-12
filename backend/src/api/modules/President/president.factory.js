@@ -1,6 +1,4 @@
-import { PresidentRepository } from "../repositories/president.js";
-import { PresidentController } from "../controllers/president.js"
-import { PresidentService } from "../services/president.js"
+import {PresidentController, PresidentService, PresidentRepository} from './index.js'
 import logger from '../utils/logger.js'
 
 export class PresidentFactory{

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { presidentRouter } from './president.js';
+import { presidentRouter } from '../modules/President/president.route.js';
 
 const router = Router();
 
