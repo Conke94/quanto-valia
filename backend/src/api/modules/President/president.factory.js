@@ -1,5 +1,5 @@
 import {PresidentController, PresidentService, PresidentRepository} from './index.js'
-import logger from '../utils/logger.js'
+import logger from '../../utils/logger.js'
 
 export class PresidentFactory{
     static createInstance(){

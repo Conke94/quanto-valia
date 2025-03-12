@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import { connectDatabase } from './database/utils/connect-database.js';
-import routes from './api/routes/index.js';
+import routes from './api/routes.js';
 
 class App {
     constructor(){ this.app = express(); }
