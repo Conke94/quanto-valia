@@ -20,7 +20,7 @@ export class PresidentDTO{
         this.url_logo = president.url_logo;
     }
 
-    toSnakeCase(): President {
+    toCamelCase(): President {
         return {
             name: this.name,
             startDate: this.start_date,

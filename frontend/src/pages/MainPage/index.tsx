@@ -18,7 +18,7 @@ export function MainPage(){
             queryKey: [QUERY_KEYS.GET_PRESIDENTS], 
             queryFn: async () => {
                 const response = await (await fetch(`${BASE_URL}/standard/president`)).json();
-                const data: President[] = response.map((president: PresidentApi) => new PresidentDTO(president).toSnakeCase())
+                const data: President[] = response.map((president: PresidentApi) => new PresidentDTO(president).toCamelCase())
                 return data;
             }
         }
