@@ -28,6 +28,15 @@ export class InflationService{
         return result;
     }
 
+    async accumulatedIndex(params){
+        logger.info("[InflationService] accumulatedIndex init");
+        const { start_date, end_date } = params;
+        const payload = { start_date, end_date };
+        const data = await this.repository.accumulatedIndex(payload);
+        logger.info("[InflationService] accumulatedIndex finish");
+        return data;
+    }
+
     async upsert() {
         logger.info("[InflationService] upsert init");
         try {

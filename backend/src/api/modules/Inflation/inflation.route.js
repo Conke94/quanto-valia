@@ -8,6 +8,7 @@ const { controller } = InflationFactory.createInstance();
 
 router.get('/', controller.index);
 router.get('/external', controller.externalIndex);
+router.get('/accumulated', controller.accumulatedIndex);
 
 router.post('/upsert', controller.upsert);
 

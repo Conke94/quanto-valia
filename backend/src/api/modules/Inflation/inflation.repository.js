@@ -9,6 +9,33 @@ export class InflationRepository{
         return inflations;
     }
 
+    async accumulatedIndex(params){
+        logger.info("[InflationRepository] accumulatedIndex init");
+        const { start_date, end_date } = params;
+
+        const result = await Inflation.aggregate([
+            {
+                $match: {
+                    $and: [
+                        { $or: [
+                            { year: { $gt: Number(start_date.year) } },
+                            { year: Number(start_date.year), month: { $gte: Number(start_date.month) } }
+                        ]},
+                        { $or: [
+                            { year: { $lt: Number(end_date.year) } },
+                            { year: Number(end_date.year), month: { $lte: Number(end_date.month) } }
+                        ]}
+                    ]
+                }
+            }, {
+              $group: { '_id': null,  total: { $sum: '$percentual' }}
+            }
+          ]);
+
+        logger.info("[InflationRepository] accumulatedIndex finish");
+        return result;
+    }
+
     async upsertInflation(params) {
         logger.info("[InflationRepository] upsertInflation init");
 

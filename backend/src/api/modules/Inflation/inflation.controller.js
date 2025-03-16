@@ -7,6 +7,7 @@ export class InflationController{
         this.index = this.index.bind(this);
         this.upsert = this.upsert.bind(this);
         this.externalIndex = this.externalIndex.bind(this);
+        this.accumulatedIndex = this.accumulatedIndex.bind(this);
     }
 
     async index(req, res){
@@ -34,6 +35,26 @@ export class InflationController{
             res.status(400).send(error);
         } finally {
             logger.info("[InflationController] externalIndex finish");
+        }
+    }
+
+    async accumulatedIndex(req, res){
+        try{
+            logger.info("[InflationController] accumulatedIndex init");
+            const { start_month, start_year, end_month, end_year } = req.query;
+            const payload = { 
+                start_date: {month: start_month, year: start_year}, 
+                end_date: {month: end_month, year: end_year} 
+            };
+            const data = await this.service.accumulatedIndex(payload);
+            logger.info("[InflationController] accumulatedIndex success");
+            res.status(200).send(data);
+        } catch (error){
+            logger.info("[InflationController] accumulatedIndex error", error);
+            console.log({error});
+            res.status(400).send(error);
+        } finally {
+            logger.info("[InflationController] accumulatedIndex finish");
         }
     }
 
