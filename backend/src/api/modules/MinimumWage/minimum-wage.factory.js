@@ -1,11 +1,11 @@
-import { MinimumWageController, MinimumWageService } from './index.js'
+import { MinimumWageController, MinimumWageService, MinimumWageRepository } from './index.js'
 import logger from '../../utils/logger.js'
 
 export class MinimumWageFactory{
     static createInstance(){
         logger.info("[InflationFactory] createInstance init");
 
-        const repository = {};
+        const repository = new MinimumWageRepository();
         const service = new MinimumWageService(repository);
         const controller = new MinimumWageController(service);
         

@@ -41,7 +41,6 @@ export class InflationRepository{
 
         const { year, month, percentual } = params;
         const search = {year, month}; const payload = { percentual };
-        console.log(payload);
 
         const result = await Inflation.findOneAndUpdate(
             search, payload,

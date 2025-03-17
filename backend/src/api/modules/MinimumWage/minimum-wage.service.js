@@ -18,4 +18,22 @@ export class MinimumWageService{
         logger.info("[MinimumWageService] externalIndex finish");
         return result;
     }
+
+    async upsert() {
+        logger.info("[MinimumWageService] upsert init");
+        try {
+            const data = await this.externalIndex();
+            const results = [];
+
+            for (const item of data) {
+                const savedData = await this.repository.upsertMinimumWage(item);
+                results.push(savedData);
+            }
+
+            logger.info("[MinimumWageService] upsert success");
+            return results;
+        } catch (error) {
+            logger.error("[MinimumWageService] upsert error", error);
+        }
+    }
 }

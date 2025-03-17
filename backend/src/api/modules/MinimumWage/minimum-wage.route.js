@@ -8,4 +8,6 @@ const { controller } = MinimumWageFactory.createInstance();
 
 router.get('/external', controller.externalIndex);
 
+router.post('/upsert', controller.upsert);
+
 export { router as minimumWageRouter };
