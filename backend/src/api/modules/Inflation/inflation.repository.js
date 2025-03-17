@@ -33,7 +33,7 @@ export class InflationRepository{
           ]);
 
         logger.info("[InflationRepository] accumulatedIndex finish");
-        return result;
+        return result.length > 0 ? result[0] : 0;
     }
 
     async upsertInflation(params) {

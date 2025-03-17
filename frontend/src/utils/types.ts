@@ -4,3 +4,8 @@ export type President = {
     endDate: string,
     urlLogo: string
 }
+
+export type AccumulatedInflation = {
+    id: null,
+    total: number
+}
