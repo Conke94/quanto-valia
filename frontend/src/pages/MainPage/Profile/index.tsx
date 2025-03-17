@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { format } from 'date-fns';
 import React from "react";
 
 
-import { President, QUERY_KEYS, BASE_URL, type AccumulatedInflation } from "../../../utils/index.ts";
+import type { AccumulatedInflation, AccumulatedWage } from '../../../utils/index.ts';
+import { MinimumWageApi, MinimumWageDTO } from '../../../utils/dto/MinimumWage.ts';
+import { President, QUERY_KEYS, BASE_URL } from "../../../utils/index.ts";
 import { Avatar } from "./Avatar/index.tsx"
 
 interface ProfileProps {
@@ -28,6 +29,18 @@ export function Profile({president}: ProfileProps){
         }
     );
 
+    const {data: wage, isLoading: isLoadingWages, isError: isErrorWages} = useQuery(
+        {
+            queryKey: [QUERY_KEYS.GET_ACCUMULATED_WAGES, start_month, start_year, end_month, end_year], 
+            queryFn: async () => {
+                const filter = `?start_month=${start_month}&start_year=${start_year}&end_month=${end_month}&end_year=${end_year}`;
+                const response = await (await fetch(`${BASE_URL}/standard/minimum-wage/accumulated${filter}`)).json();
+                const data: AccumulatedWage = new MinimumWageDTO(response).toCamelCase();
+                return data;
+            }
+        }
+    );
+
     function renderEndDate(){
         if(!president.endDate){return 'Até o momento'}
         return president.endDate.split('-')[0];
@@ -41,6 +54,7 @@ export function Profile({president}: ProfileProps){
                 {president.startDate.split('-')[0]} - {renderEndDate()}
             </div>
             <div style={{textAlign:'center'}}>Inflação acumulada: {inflation?.total}%</div>
+            <div style={{textAlign:'center'}}>Salário mínimo: {wage?.percentual.toFixed(2)}%</div>
         </div>
     )
 }

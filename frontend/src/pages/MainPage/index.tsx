@@ -33,7 +33,10 @@ export function MainPage(){
 
     function handleScroll(scrollAmount: number){
         if (listRef.current) {
-            const newScrollPosition = scrollPosition + scrollAmount;
+            let newScrollPosition = scrollPosition + scrollAmount;
+            if(newScrollPosition < 0){newScrollPosition = 0;}
+            console.log({listRef});
+            if(data && newScrollPosition > data?.length*ITEM_WIDTH){newScrollPosition = data?.length*ITEM_WIDTH;}
             listRef.current.scrollLeft = newScrollPosition;
             setScrollPosition(newScrollPosition);
         }
