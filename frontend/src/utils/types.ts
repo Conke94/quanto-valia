@@ -1,4 +1,5 @@
 export type President = {
+    id: string,
     name: string,
     startDate: string,
     endDate: string,

@@ -6,6 +6,7 @@ import type { AccumulatedInflation, AccumulatedWage } from '../../../utils/index
 import { MinimumWageApi, MinimumWageDTO } from '../../../utils/dto/MinimumWage.ts';
 import { President, QUERY_KEYS, BASE_URL } from "../../../utils/index.ts";
 import { Avatar } from "./Avatar/index.tsx"
+import { Col, Row } from 'antd';
 
 interface ProfileProps {
     president: President
@@ -47,14 +48,14 @@ export function Profile({president}: ProfileProps){
     }
 
     return (
-        <div className="flex flex-col items-center" style={{margin: '50px'}}>
-            <Avatar />
-            <div style={{textAlign:'center'}}>{president.name}</div>
-            <div style={{textAlign:'center'}}>
-                {president.startDate.split('-')[0]} - {renderEndDate()}
-            </div>
-            <div style={{textAlign:'center'}}>Inflação acumulada: {inflation?.total}%</div>
-            <div style={{textAlign:'center'}}>Salário mínimo: {wage?.percentual.toFixed(2)}%</div>
-        </div>
+        <Col>
+            <Row justify='center'>
+                <Avatar />  
+                <Col span={24} style={{textAlign: 'center'}}>{president.name}</Col>
+                <Col span={24} style={{textAlign: 'center'}}>{president.startDate.split('-')[0]} - {renderEndDate()}</Col>
+                <Col span={24} style={{textAlign: 'center'}}>Inflação acumulada: {inflation && inflation?.total > 0 ? '+' : '-'}{inflation?.total}%</Col>
+                <Col span={24} style={{textAlign: 'center'}}>Variação do salário mínimo: {wage && wage.percentual > 0 ? '+' : '-'}{wage?.percentual.toFixed(2)}%</Col>
+            </Row>
+        </Col>
     )
 }
