@@ -19,6 +19,19 @@ export class MinimumWageService{
         return result;
     }
 
+    async accumulatedIndex(params){
+        logger.info("[InflationService] accumulatedIndex init");
+        const { start_date, end_date } = params;
+        const payload = { start_date, end_date };
+        const data = await this.repository.accumulatedIndex(payload);
+
+        const percentual = (data.final_value - data.initial_value)*100/data.initial_value;
+        const result = { ...data, percentual }
+
+        logger.info("[InflationService] accumulatedIndex finish");
+        return result;
+    }
+
     async upsert() {
         logger.info("[MinimumWageService] upsert init");
         try {

@@ -6,6 +6,7 @@ export class MinimumWageController{
 
         this.upsert = this.upsert.bind(this);
         this.externalIndex = this.externalIndex.bind(this);
+        this.accumulatedIndex = this.accumulatedIndex.bind(this);
     }
 
 
@@ -23,18 +24,38 @@ export class MinimumWageController{
         }
     }
 
+    async accumulatedIndex(req, res){
+        try{
+            logger.info("[MinimumWageController] accumulatedIndex init");
+            const { start_month, start_year, end_month, end_year } = req.query;
+            const payload = { 
+                start_date: {month: start_month, year: start_year}, 
+                end_date: {month: end_month, year: end_year} 
+            };
+            const data = await this.service.accumulatedIndex(payload);
+            logger.info("[MinimumWageController] accumulatedIndex success");
+            res.status(200).send(data);
+        } catch (error){
+            logger.info("[MinimumWageController] accumulatedIndex error", error);
+            console.log({error});
+            res.status(400).send(error);
+        } finally {
+            logger.info("[MinimumWageController] accumulatedIndex finish");
+        }
+    }
+
     async upsert(req, res){
         try{
-            logger.info("[InflationController] upsert init");
+            logger.info("[MinimumWageController] upsert init");
             const data = await this.service.upsert();
-            logger.info("[InflationController] upsert success");
+            logger.info("[MinimumWageController] upsert success");
             res.status(200).send(data);
         } catch (error){
             console.log(error);
-            logger.info("[InflationController] upsert error", error);
+            logger.info("[MinimumWageController] upsert error", error);
             res.status(400).send(error);
         } finally {
-            logger.info("[InflationController] upsert finish");
+            logger.info("[MinimumWageController] upsert finish");
         }
     }
 }
